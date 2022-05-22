@@ -22,7 +22,7 @@ router.get('/candidates', (req, res) => {
     });
   }); 
   //get one 
-  router.get('/candidate/:id', (req, res) => {
+router.get('/candidate/:id', (req, res) => {
     const sql = `SELECT candidates.*, parties.name 
                AS party_name 
                FROM candidates 
@@ -43,7 +43,7 @@ router.get('/candidates', (req, res) => {
   });
   });
   
-  router.delete('/candidate/:id', (req, res) => {
+router.delete('/candidate/:id', (req, res) => {
     const sql = `DELETE FROM candidates WHERE id = ?`;
     const params = [req.params.id]
   
@@ -64,7 +64,7 @@ router.get('/candidates', (req, res) => {
   });
   });
   //create
-  router.post('/candidate', ({ body },  res) => {
+router.post('/candidate', ({ body },  res) => {
     const errors = inputCheck(body, 'first_name', 'last_name', 'industry_connected');
     if(errors) {
       res.status(400).json({ error: errors });
@@ -85,7 +85,7 @@ router.get('/candidates', (req, res) => {
   });
   //update
   // Update a candidate's party
-  router.put('/candidate/:id', (req, res) => {
+router.put('/candidate/:id', (req, res) => {
     const errors = inputCheck(req.body, 'party_id');
   
   if (errors) {
